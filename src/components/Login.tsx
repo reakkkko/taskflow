@@ -45,10 +45,14 @@ function Login() {
 
             />
 
-            <button className="bg-blue-500 text-white py-2 px-4 w-64 rounded-xl" onClick={handleLogin}>
+            <button className="bg-blue-500 text-white py-2 px-4 w-64 rounded-xl hover:cursor-pointer hover:bg-blue-900 transition duration-200 ease-in-out" onClick={handleLogin}>
                 Login
             </button>
             {message && <p className="text-white text-sm">{message}</p>}
+            <a
+            className="text-white hover:text-indigo-500 focus:text-indigo-500 transition duration-200 ease-in-out font-bold"
+            href="/register"
+            >Register</a>
         </div>
     )
 }
