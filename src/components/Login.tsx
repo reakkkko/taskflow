@@ -7,6 +7,10 @@ function Login() {
     const navigate = useNavigate()
 
     const handleLogin = async () => {
+        if (!email || !password) {
+            setMessage("Bitte Email und Passwort eingeben!")
+            return
+        }
         const response = await fetch("http://localhost:3001/login", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -14,6 +18,7 @@ function Login() {
         })
         const data = await response.json()
         if (data.success) {
+            localStorage.setItem("token", data.token)
             navigate("/dashboard")
         } else {
             setMessage(data.message)

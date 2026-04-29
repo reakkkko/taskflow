@@ -7,6 +7,10 @@ function Register() {
     const navigate = useNavigate()
 
     const handleRegister = async () => {
+        if (!email || !password) {
+            setMessage("Bitte Email und Passwort eingeben!")
+            return
+        }
         const response = await fetch("http://localhost:3001/register", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -14,6 +18,7 @@ function Register() {
         })
         const data = await response.json()
         if (data.success) {
+            localStorage.setItem("token", data.token)
             navigate("/dashboard")
         } else {
             setMessage(data.message)
@@ -38,11 +43,10 @@ function Register() {
             <button
                 className="bg-blue-500 text-white py-2 px-4 w-64 rounded-xl"
                 onClick={() => {
-                    console.log({ email, password });
                     {handleRegister();}
                 }}
             >
-                Regsiter
+                Register
             </button>
             {message && <p className="text-white text-sm">{message}</p>}
 

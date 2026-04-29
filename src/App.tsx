@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import Login from "./components/Login";
 import Dashboard from "./pages/Dashboard.tsx";
 import Register from "./pages/Register.tsx";
@@ -8,7 +9,11 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Login />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={
+                    <ProtectedRoute>
+                        <Dashboard />
+                    </ProtectedRoute>
+                    } />
                 <Route path="/register" element={<Register />} />
             </Routes>
         </BrowserRouter>
